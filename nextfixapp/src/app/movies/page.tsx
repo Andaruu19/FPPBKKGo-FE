@@ -9,6 +9,7 @@ import { Navigation, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
+import AddToAlbumModal from "../components/addtoalbummodal";
 
 interface Genre {
   ID: number;
@@ -31,6 +32,8 @@ interface Movie {
 export default function MoviesPage() {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -56,6 +59,16 @@ export default function MoviesPage() {
         console.error("Error fetching movies:", error);
       });
   }, []);
+
+  const handleOpenModal = (movieId: number) => {
+    setSelectedMovieId(movieId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMovieId(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="relative w-screen">
@@ -142,9 +155,8 @@ export default function MoviesPage() {
                           <div className="flex justify-end">
                             {/* Modal toggle button */}
                             <button
-                              onClick={() => {
-                                // Handle modal open
-                              }}
+                              onClick={() => handleOpenModal(movie.ID)}
+                              // Handle modal open
                               type="button"
                             >
                               {/* Plus Icon */}
@@ -174,6 +186,14 @@ export default function MoviesPage() {
           ))}
         </section>
       </div>
+      {/* Add to Album Modal */}
+      {selectedMovieId && (
+        <AddToAlbumModal
+          movieId={selectedMovieId}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }
