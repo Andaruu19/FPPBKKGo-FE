@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import AddToAlbumModal from "../../components/addtoalbummodal";
 
 interface Actor {
   ID: number;
@@ -125,6 +126,11 @@ export default function MoviePage() {
           >
             Add to album
           </button>
+          <AddToAlbumModal
+            movieId={movie.ID}
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
       </div>
     </section>
