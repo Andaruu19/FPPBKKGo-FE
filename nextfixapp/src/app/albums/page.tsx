@@ -134,8 +134,9 @@ export default function AlbumsPage() {
                 /* Albums List */
                 <div className="mt-6 flow-root sm:mt-8">
                   {albums.map((album) => (
-                    <div key={album.ID} className="divide-y divide-gray-200">
+                    <div key={album.ID} className="divide-y divide-gray-200 mb-6">
                       <div className="grid gap-4 pb-4 md:grid-cols-12 md:gap-6 md:pb-6">
+                        {/* Album Image */}
                         <div className="order-1 w-1/2 max-w-sm md:order-1 md:col-span-3">
                           <Image
                             className="h-16 w-16 rounded"
@@ -145,7 +146,9 @@ export default function AlbumsPage() {
                             height={64}
                           />
                         </div>
-                        <div className="order-3 items-center md:order-1 md:col-span-3">
+                  
+                        {/* Album Name */}
+                        <div className="order-3 md:order-1 md:col-span-3">
                           <Link
                             href={`/albums/${album.ID}`}
                             className="text-base font-semibold text-white hover:underline"
@@ -153,10 +156,18 @@ export default function AlbumsPage() {
                             {album.Name}
                           </Link>
                         </div>
-                        <div className="order-4 md:order-2 md:col-span-4">
-                          <p className="text-white">{album.Deskripsi}</p>
+                  
+                        {/* Album Description */}
+                        <div className="order-4 md:order-2 md:col-span-6">
+                          <p className="text-white">
+                            {album.Deskripsi.length > 200
+                              ? `${album.Deskripsi.substring(0, 200)}...`
+                              : album.Deskripsi}
+                          </p>
                         </div>
-                        <div className="order-1 flex content-center items-center justify-end gap-2 md:order-3">
+                            
+                        {/* Action Buttons */}
+                        <div className="order-5 md:order-3 md:col-span-12 flex justify-end gap-2 mt-4">
                           <button
                             onClick={() => {
                               setSelectedAlbum(album);
@@ -184,6 +195,7 @@ export default function AlbumsPage() {
                     </div>
                   ))}
                 </div>
+
               )}
             </div>
           </div>
