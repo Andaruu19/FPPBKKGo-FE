@@ -29,6 +29,9 @@ const Navbar = () => {
                 <Link href="/albums" legacyBehavior>
                   <a className="text-s cursor-pointer ps-3">Albums</a>
                 </Link>
+                <Link href="/generatedalbums" legacyBehavior>
+                  <a className="text-s cursor-pointer ps-3">Generated Albums</a>
+                </Link>
               </section>
             </section>
             <section className="justify-right">

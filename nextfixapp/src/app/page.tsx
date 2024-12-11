@@ -28,7 +28,7 @@ export default function Home() {
           </svg>
           <blockquote>
             <p className="text-2xl font-medium text-white">
-              "Proyek kecil untuk Final Project Laravel PBKK, karena programmer
+              "Proyek kecil untuk Final Project Go Lang PBKK, karena programmer
               nya skill issue yaa jadi kita namain nextfix aja karena ngefix nya
               nggak selesai-selesai"
             </p>
@@ -36,7 +36,7 @@ export default function Home() {
           <figcaption className="mt-6 flex items-center justify-center space-x-3">
             <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
               <div className="pr-3 text-sm font-light text-white">
-                Adnan Abdullah Juan (5025221155)
+                Wardatul Amalia Safitri (5025211006)
               </div>
               <div className="pl-3 text-sm font-light text-white">
                 Farel Hanif Andaru (5025221253)
@@ -44,7 +44,7 @@ export default function Home() {
             </div>
           </figcaption>
           <div className="justify-center py-2 pr-3 text-sm font-light text-white">
-            Kelompok - 21
+            Kelompok - 1
           </div>
         </figure>
       </div>
