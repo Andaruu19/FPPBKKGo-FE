@@ -42,7 +42,7 @@ export default function AlbumsPage() {
   const fetchAlbums = async () => {
     try {
       setLoading(true);
-      const response = await axios.get<Album[]>("http://localhost:8080/");
+      const response = await axios.get<Album[]>("http://localhost:8080/albums/");
       setAlbums(response.data);
       setError(null);
     } catch (err) {
@@ -56,7 +56,7 @@ export default function AlbumsPage() {
   const handleCreateAlbum = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/", formData);
+      await axios.post("http://localhost:8080/albums/", formData);
       setIsCreateModalOpen(false);
       setFormData({ name: "", deskripsi: "" });
       fetchAlbums();
@@ -70,7 +70,9 @@ export default function AlbumsPage() {
     e.preventDefault();
     if (!selectedAlbum) return;
     try {
-      await axios.put(`http://localhost:8080/`, formData);
+      const albumId = selectedAlbum.ID;
+
+      await axios.put(`http://localhost:8080/albums/${albumId}`, formData);
       setIsEditModalOpen(false);
       setSelectedAlbum(null);
       setFormData({ name: "", deskripsi: "" });
@@ -83,16 +85,21 @@ export default function AlbumsPage() {
 
   const handleDeleteAlbum = async () => {
     if (!selectedAlbum) return;
+
     try {
-      await axios.delete(`http://localhost:8080/`);
-      setIsDeleteModalOpen(false);
-      setSelectedAlbum(null);
-      fetchAlbums();
+        const albumId = selectedAlbum.ID;
+        
+        await axios.delete(`http://localhost:8080/albums/${albumId}`);
+        
+        setIsDeleteModalOpen(false);
+        setSelectedAlbum(null);
+        fetchAlbums();
     } catch (err) {
-      console.error("Error deleting album:", err);
-      setError("Failed to delete album");
+        console.error("Error deleting album:", err);
+        setError("Failed to delete album");
     }
-  };
+};
+
 
   return (
     <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -140,7 +147,7 @@ export default function AlbumsPage() {
                         </div>
                         <div className="order-3 items-center md:order-1 md:col-span-3">
                           <Link
-                            href={`/albums/${album.Slug}`}
+                            href={`/albums/${album.ID}`}
                             className="text-base font-semibold text-white hover:underline"
                           >
                             {album.Name}
