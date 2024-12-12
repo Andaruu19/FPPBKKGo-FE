@@ -1,6 +1,8 @@
-// src/app/components/Navbar.tsx
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { FormEvent } from "react";
 
 const Navbar = () => {
   return (
@@ -37,8 +39,14 @@ const Navbar = () => {
             <section className="justify-right">
               <form
                 className="mx-auto w-screen max-w-sm justify-end"
-                action="/movies/search"
-                method="GET"
+                onSubmit={(e: FormEvent<HTMLFormElement>) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const searchTerm = (
+                    form.querySelector("#default-search") as HTMLInputElement
+                  ).value;
+                  window.location.href = `/movies/search/${searchTerm}`;
+                }}
               >
                 <label
                   htmlFor="default-search"
@@ -66,7 +74,7 @@ const Navbar = () => {
                   </div>
                   <input
                     type="text"
-                    name="query"
+                    name="search"
                     id="default-search"
                     className="block w-full rounded-lg border border-gray-300 bg-black p-4 ps-10 text-sm text-white focus:border-red-800 focus:ring-red-800"
                     placeholder="Search"

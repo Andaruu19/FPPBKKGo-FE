@@ -42,7 +42,9 @@ export default function AlbumsPage() {
   const fetchAlbums = async () => {
     try {
       setLoading(true);
-      const response = await axios.get<Album[]>("http://localhost:8080/albums/");
+      const response = await axios.get<Album[]>(
+        "http://localhost:8080/albums/"
+      );
       setAlbums(response.data);
       setError(null);
     } catch (err) {
@@ -87,19 +89,18 @@ export default function AlbumsPage() {
     if (!selectedAlbum) return;
 
     try {
-        const albumId = selectedAlbum.ID;
-        
-        await axios.delete(`http://localhost:8080/albums/${albumId}`);
-        
-        setIsDeleteModalOpen(false);
-        setSelectedAlbum(null);
-        fetchAlbums();
-    } catch (err) {
-        console.error("Error deleting album:", err);
-        setError("Failed to delete album");
-    }
-};
+      const albumId = selectedAlbum.ID;
 
+      await axios.delete(`http://localhost:8080/albums/${albumId}`);
+
+      setIsDeleteModalOpen(false);
+      setSelectedAlbum(null);
+      fetchAlbums();
+    } catch (err) {
+      console.error("Error deleting album:", err);
+      setError("Failed to delete album");
+    }
+  };
 
   return (
     <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -134,7 +135,10 @@ export default function AlbumsPage() {
                 /* Albums List */
                 <div className="mt-6 flow-root sm:mt-8">
                   {albums.map((album) => (
-                    <div key={album.ID} className="divide-y divide-gray-200 mb-6">
+                    <div
+                      key={album.ID}
+                      className="divide-y divide-gray-200 mb-6"
+                    >
                       <div className="grid gap-4 pb-4 md:grid-cols-12 md:gap-6 md:pb-6">
                         {/* Album Image */}
                         <div className="order-1 w-1/2 max-w-sm md:order-1 md:col-span-3">
@@ -146,7 +150,7 @@ export default function AlbumsPage() {
                             height={64}
                           />
                         </div>
-                  
+
                         {/* Album Name */}
                         <div className="order-3 md:order-1 md:col-span-3">
                           <Link
@@ -156,7 +160,7 @@ export default function AlbumsPage() {
                             {album.Name}
                           </Link>
                         </div>
-                  
+
                         {/* Album Description */}
                         <div className="order-4 md:order-2 md:col-span-6">
                           <p className="text-white">
@@ -165,7 +169,7 @@ export default function AlbumsPage() {
                               : album.Deskripsi}
                           </p>
                         </div>
-                            
+
                         {/* Action Buttons */}
                         <div className="order-5 md:order-3 md:col-span-12 flex justify-end gap-2 mt-4">
                           <button
@@ -195,7 +199,6 @@ export default function AlbumsPage() {
                     </div>
                   ))}
                 </div>
-
               )}
             </div>
           </div>

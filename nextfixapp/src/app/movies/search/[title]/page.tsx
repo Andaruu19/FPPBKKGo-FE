@@ -41,7 +41,9 @@ export default function AlbumPage() {
   const fetchMovies = async () => {
     try {
       setLoading(true);
-      const response = await axios.get<Movie[]>(`http://localhost:8080/movies/search/${params.title}`);
+      const response = await axios.get<Movie[]>(
+        `http://localhost:8080/movies/search/${params.title}`
+      );
       setMovies(response.data);
       setError(null);
     } catch (err) {
