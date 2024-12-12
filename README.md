@@ -6,6 +6,9 @@ Pada final project Pemrograman Berbasis Kernagka Kerja (PBBKK) ini, kami membuat
 Platform ini dibuat menggunakan Go Lang pada sisi backend (https://github.com/Andaruu19/FPPBKKGo-BE.git) dan Next.js serta Typescript pada sisi frontend.
 Secara garis besar terdapat 4 section dalam nextfix, yaitu Home, Movies, Albums, dan Generated Albums
 
+## Video Demo Aplikasi
+https://youtu.be/q1p2Yj5zTQE
+
 ## Home
 Halaman Home adalah halaman awal yang berisi deskripsi singkat platform.
 
